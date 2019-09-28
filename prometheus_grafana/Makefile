@@ -7,14 +7,14 @@ install:
 	echo '    scrape_interval: 5s' >> /usr/local/etc/prometheus.yml
 	echo '    static_configs:' >> /usr/local/etc/prometheus.yml
 	echo "    - targets: ['localhost:9100']" >> /usr/local/etc/prometheus.yml
-	service prometheus start
-	service node_exporter start
-	service grafana start
+	service prometheus start || true
+	service node_exporter start || true
+	service grafana start || true
 
 deinstall:
-	service grafana stop
-	service node_exporter stop
-	service prometheus stop
+	service grafana stop || true
+	service node_exporter stop || true
+	service prometheus stop || true
 	sed -i '' '/grafana_enable/d' /etc/rc.conf
 	sed -i '' '/node_exporter_enable/d' /etc/rc.conf
 	sed -i '' '/prometheus_enable/d' /etc/rc.conf
