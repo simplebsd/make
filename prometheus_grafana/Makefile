@@ -7,9 +7,9 @@ install:
 	echo '    scrape_interval: 5s' >> /usr/local/etc/prometheus.yml
 	echo '    static_configs:' >> /usr/local/etc/prometheus.yml
 	echo "    - targets: ['localhost:9100']" >> /usr/local/etc/prometheus.yml
-	service prometheus start || true
-	service node_exporter start || true
-	service grafana start || true
+	service prometheus start
+	service node_exporter start
+	service grafana start
 
 deinstall:
 	service grafana stop || true
