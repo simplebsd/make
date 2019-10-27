@@ -29,4 +29,4 @@ deinstall:
 	rm -rf /var/tmp/prometheus/ || true
 	rm -rf /var/db/grafana || true
 	rm -rf /usr/local/etc/alertmanager || true
-	pw userdel alertmanager -r
+	pw userdel alertmanager -r || true
