@@ -1,6 +1,6 @@
 install:
 	pkg ins -y minio
-	echo 'minio_enable="YES"' >> /etc/rc.conf
+	sysrc minio_enable="YES"
 	service minio start
 
 deinstall:
@@ -9,4 +9,3 @@ deinstall:
 	pkg del -y minio
 	pw userdel minio -r || true
 	rm -rf /usr/local/etc/minio
-	rm -rf /var/db/minio
