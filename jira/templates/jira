@@ -1,0 +1,39 @@
+#!/bin/sh
+
+#
+# PROVIDE: jira
+# REQUIRE: DAEMON 
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+load_rc_config jira
+
+JAVA_HOME="/usr/local/openjdk8"
+JRE_HOME="/usr/local/openjdk8/jre"
+JIRA_INSTALL="/usr/local/share/jira"
+JIRA_HOME="/usr/local/jira"
+
+jira_enable=${jira_enable:-"NO"}
+jira_user=${jira_user:-"jira"}
+
+name=jira
+rcvar=jira_enable
+
+procname="java"
+pidfile="/var/run/jira.pid"
+
+start_cmd="jira_start"
+stop_cmd="jira_stop"
+
+jira_start()
+{
+ su -l ${jira_user} -c "export JAVA_HOME=${JAVA_HOME};export JRE_HOME=${JRE_HOME};export JIRA_HOME=${JIRA_HOME};${JIRA_INSTALL}/bin/catalina.sh start || err 1 'Error triggering JIRA startup'"
+}
+
+jira_stop()
+{
+ su -l ${jira_user} -c "export JAVA_HOME=${JAVA_HOME};export JRE_HOME=${JRE_HOME};export JIRA_HOME=${JIRA_HOME};${JIRA_INSTALL}/bin/catalina.sh stop 10 -force || err 1 'Error triggering JIRA shutdown'"
+}
+
+run_rc_command "$1"
