@@ -1,11 +1,14 @@
 install:
-	pkg ins -y minio
+	mkdir -p /usr/local/minio
+	env ASSUME_ALWAYS_YES=YES pkg update
+	pkg install -y minio
+	chown -R minio:minio /usr/local/minio
 	sysrc minio_enable="YES"
+	sysrc minio_disks="/usr/local/minio"
 	service minio start
 
 deinstall:
-	service stop minio || true
-	sed -i '' '/minio_enable/d' /etc/rc.conf
-	pkg del -y minio
+	service minio stop || true
+	sysrc -x minio_enable
+	pkg del -y minio || true
 	pw userdel minio -r || true
-	rm -rf /usr/local/etc/minio
