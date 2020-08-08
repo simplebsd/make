@@ -14,7 +14,7 @@ install:
 	ipsec pki --self --ca --lifetime 3650 --in /usr/local/etc/vpn-certs/server-root-key.pem --type rsa --dn "C=RU, O=SIMPLEBSD, CN=VPN Server Root CA" --outform pem > /usr/local/etc/vpn-certs/server-root-ca.pem
 	ipsec pki --gen --type rsa --size 4096 --outform pem > /usr/local/etc/vpn-certs/vpn-server-key.pem
 	chmod 600 /usr/local/etc/vpn-certs/vpn-server-key.pem
-	ipsec pki --pub --in /usr/local/etc/vpn-certs/vpn-server-key.pem --type rsa | ipsec pki --issue --lifetime 1825 --cacert /usr/local/etc/vpn-certs/server-root-ca.pem --cakey /usr/local/etc/vpn-certs/server-root-key.pem --dn "C=RU, O=SIMPLEBSD, CN=simplebsd.ru" --san simplebsd.ru --flag serverAuth --flag ikeIntermediate --outform pem > /usr/local/etc/vpn-certs/vpn-server-cert.pem
+	ipsec pki --pub --in /usr/local/etc/vpn-certs/vpn-server-key.pem --type rsa | ipsec pki --issue --lifetime 1825 --cacert /usr/local/etc/vpn-certs/server-root-ca.pem --cakey /usr/local/etc/vpn-certs/server-root-key.pem --dn "C=RU, O=SIMPLEBSD, CN=193.109.79.126" --san 193.109.79.126 --flag serverAuth --flag ikeIntermediate --outform pem > /usr/local/etc/vpn-certs/vpn-server-cert.pem
 
 	# Copy certs and keys to ipsec.d dirs
 	cp /usr/local/etc/vpn-certs/vpn-server-cert.pem /usr/local/etc/ipsec.d/certs/

@@ -9,7 +9,7 @@ make install
 
 If you have enabled PF, you can open ports for Strongswan by command:
 make pf_configure
-WARNING: make sure you have PF file riles, located at /etc/pf.conf, and this conf file has main interface variable called $ext_if.
+WARNING: make sure you have PF conf file, located at /etc/pf.conf, and this conf file has external network interface variable called $ext_if.
 
 To uninstall Strongswan, do:
 make deinstall
