@@ -44,7 +44,7 @@ pf_configure:
 	echo '# Strongswan' >> /etc/pf.conf
 	echo 'pass in on $$ext_if proto udp from any to $$ext_if port 500' >> /etc/pf.conf
 	echo 'pass in on $$ext_if proto udp from any to $$ext_if port 4500' >> /etc/pf.conf
-#	pfctl -f /etc/pf.conf
+	pfctl -f /etc/pf.conf
 
 pf_deconfigure:
 	# Close 500, 4500 udp ports
