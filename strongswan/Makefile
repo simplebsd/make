@@ -9,17 +9,16 @@ install:
 	mkdir -p /usr/local/etc/vpn-certs
 
 	# Generate certs and keys
-	cd /usr/local/etc/vpn-certs
-	ipsec pki --gen --type rsa --size 4096 --outform pem > server-root-key.pem
-	chmod 600 server-root-key.pem
-	ipsec pki --self --ca --lifetime 3650 --in server-root-key.pem --type rsa --dn "C=RU, O=SIMPLEBSD, CN=VPN Server Root CA" --outform pem > server-root-ca.pem
-	ipsec pki --gen --type rsa --size 4096 --outform pem > vpn-server-key.pem
-	chmod 600 vpn-server-key.pem
-	ipsec pki --pub --in vpn-server-key.pem --type rsa | ipsec pki --issue --lifetime 1825 --cacert server-root-ca.pem --cakey server-root-key.pem --dn "C=RU, O=SIMPLEBSD, CN=simplebsd.ru" --san simplebsd.ru --flag serverAuth --flag ikeIntermediate --outform pem > vpn-server-cert.pem
+	ipsec pki --gen --type rsa --size 4096 --outform pem > /usr/local/etc/vpn-certs/server-root-key.pem
+	chmod 600 /usr/local/etc/vpn-certs/server-root-key.pem
+	ipsec pki --self --ca --lifetime 3650 --in /usr/local/etc/vpn-certs/server-root-key.pem --type rsa --dn "C=RU, O=SIMPLEBSD, CN=VPN Server Root CA" --outform pem > /usr/local/etc/vpn-certs/server-root-ca.pem
+	ipsec pki --gen --type rsa --size 4096 --outform pem > /usr/local/etc/vpn-certs/vpn-server-key.pem
+	chmod 600 /usr/local/etc/vpn-certs/vpn-server-key.pem
+	ipsec pki --pub --in /usr/local/etc/vpn-certs/vpn-server-key.pem --type rsa | ipsec pki --issue --lifetime 1825 --cacert /usr/local/etc/vpn-certs/server-root-ca.pem --cakey /usr/local/etc/vpn-certs/server-root-key.pem --dn "C=RU, O=SIMPLEBSD, CN=simplebsd.ru" --san simplebsd.ru --flag serverAuth --flag ikeIntermediate --outform pem > /usr/local/etc/vpn-certs/vpn-server-cert.pem
 
 	# Copy certs and keys to ipsec.d dirs
-	cp vpn-server-cert.pem /usr/local/etc/ipsec.d/certs/
-	cp vpn-server-key.pem /usr/local/etc/ipsec.d/private/
+	cp /usr/local/etc/vpn-certs/vpn-server-cert.pem /usr/local/etc/ipsec.d/certs/
+	cp /usr/local/etc/vpn-certs/vpn-server-key.pem /usr/local/etc/ipsec.d/private/
 
 	# Add ipsec.conf file
 	cp ipsec.conf /usr/local/etc/
