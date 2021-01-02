@@ -9,7 +9,7 @@ install:
 	sed -i "" "s~freebsd_client_private_key~`cat /usr/local/etc/wireguard/freebsd_client.private`~g" usr/local/etc/wireguard/wg0.conf
 	sysrc wireguard_enable="YES"
 	sysrc wireguard_interfaces="wg0"
-	service wireguard start
+#	service wireguard start
 
 deinstall:
 	service wireguard stop
