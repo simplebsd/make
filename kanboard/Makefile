@@ -1,10 +1,10 @@
 install:
 	env ASSUME_ALWAYS_YES=YES pkg update
 	pkg ins -y nginx php80 php80-kanboard
-	sysrc nginx_enable="YES"
-	sysrc php_fpm_enable="YES"
 	cp templates/nginx.conf /usr/local/etc/nginx/
 	chown -R www:www /usr/local/www/kanboard
+	sysrc nginx_enable="YES"
+	sysrc php_fpm_enable="YES"
 	service nginx start
 	service php-fpm start
 
