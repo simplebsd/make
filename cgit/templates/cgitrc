@@ -1,0 +1,14 @@
+## style-sheet and custom logo
+css=/cgit.css
+logo=/cgit.png
+
+## root for all cgit links
+virtual-root=/
+
+## syntax highlighting
+source-filter=/usr/local/lib/cgit/filters/syntax-highlighting-custom.sh
+
+## path to repo configuration file
+## NOTE: This should always be the last line
+#include=/usr/local/etc/cgitrepos
+scan-path=/git
