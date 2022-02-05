@@ -10,5 +10,5 @@ source-filter=/usr/local/lib/cgit/filters/syntax-highlighting-custom.sh
 
 ## path to repo configuration file
 ## NOTE: This should always be the last line
-#include=/usr/local/etc/cgitrepos
-scan-path=/git
+include=/usr/local/etc/cgitrepos
+#scan-path=/git

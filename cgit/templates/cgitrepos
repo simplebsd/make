@@ -1,0 +1,3 @@
+repo.url=MyRepo01
+repo.path=/git/repo01.git
+repo.desc=My fist Git Repository01
