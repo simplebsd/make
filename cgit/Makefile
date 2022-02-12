@@ -9,7 +9,7 @@ install:
 	@echo [Add Git group and user]
 	@echo
 	pw groupadd -n git || true
-	pw useradd -n git -c "Git user" -s /usr/local/libexec/git-core/git-shell -d /git || true
+	pw useradd -n git -c "Git user" -s /usr/local/libexec/git-core/git-shell -d /git -m || true
 	@echo
 
 	@echo [Configure Nginx]
