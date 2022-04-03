@@ -30,6 +30,7 @@ install:
 deinstall:
 	@echo
 	@echo [Stop Nginx, Fcgiwrap service and disable it]
+	@echo
 	service fcgiwrap stop
 	service nginx stop
 	sysrc -x nginx_enable="YES"
@@ -37,6 +38,7 @@ deinstall:
 	sysrc -x fcgiwrap_user="www"
 	sysrc -x fcgiwrap_socket_owner="www"
 	sysrc -x fcgiwrap_socket_group="www"
+	@echo
 
 	@echo
 	@echo [Uninstall Nginx, Fcgiwrap, Git and Cgit]
