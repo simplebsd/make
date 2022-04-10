@@ -1,6 +1,6 @@
 install:
 	@echo
-	@echo [Install Minio]
+	@echo [Install Minio package]
 	env ASSUME_ALWAYS_YES=YES pkg update
 	pkg install -y minio
 	@echo
@@ -20,6 +20,6 @@ deinstall:
 	sysrc -x minio_enable
 	@echo
 
-	@echo [Uninstall Minio]
+	@echo [Uninstall Minio package]
 	pkg del -y minio || true
 	pw userdel minio -r || true
