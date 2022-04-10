@@ -29,20 +29,17 @@ install:
 
 deinstall:
 	@echo
-	@echo [Stop and disable Nginx Fcgiwrap]
+	@echo [Stop Nginx, Fcgiwrap service and disable it]
 	@echo
-	service nginx stop
 	service fcgiwrap stop
-	sysrc -x nginx_enable
-	sysrc -x fcgiwrap_enable
+	service nginx stop
+	sysrc -x nginx_enable="YES"
+	sysrc -x fcgiwrap_enable="YES"
+	sysrc -x fcgiwrap_user="www"
+	sysrc -x fcgiwrap_socket_owner="www"
+	sysrc -x fcgiwrap_socket_group="www"
 	@echo
 
-	@echo [Delete git user]
 	@echo
-	pw userdel git -r
-	@echo
-
-	@echo
-	@echo [Delete Nginx, Fcgiwrap, Git and Cgit]
-	@echo
+	@echo [Uninstall Nginx, Fcgiwrap, Git and Cgit]
 	pkg del -y nginx fcgiwrap git cgit

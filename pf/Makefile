@@ -1,8 +1,12 @@
 install:
-	# Add pf.conf file
+	@echo
+	@echo [Add pf.conf file]
+	@echo
 	cp pf.conf /etc/
+	@echo
 
-	# Enable and start PF
+	@echo [Enable and start PF]
+	@echo
 	sysrc pf_enable="YES"
 	sysrc pf_rules="/etc/pf.conf"
 	service pf start
